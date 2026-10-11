@@ -119,7 +119,7 @@ class WebRtcVad:
         return bool(result)
 
     def close(self):
-        if self._handle:
+        if getattr(self, "_handle", None):
             self._lib.WebRtcVad_Free.argtypes = [ctypes.c_void_p]
             self._lib.WebRtcVad_Free(self._handle)
             self._handle = None
